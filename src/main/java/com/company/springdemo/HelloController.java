@@ -1,5 +1,6 @@
 package com.company.springdemo;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,12 @@ public class HelloController {
 
     @RequestMapping("/{myName}")
     String index(@PathVariable String myName) {
-        return "Hello "+myName+"!!!";
+
+        return "Hello " + myName + "!!!";
+    }
+
+    @RequestMapping("/getData")
+    public JSONPObject getData(){
+        return null;
     }
 }
