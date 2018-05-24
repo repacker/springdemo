@@ -1,4 +1,4 @@
-package com.company.springdemo;
+package com.company.springdemo.controller;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
