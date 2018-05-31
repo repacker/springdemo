@@ -10,4 +10,6 @@ public interface UserDao {
 
     List<UserDomain> selectUsers();
 
+    boolean deleteById(int userId);
+
 }

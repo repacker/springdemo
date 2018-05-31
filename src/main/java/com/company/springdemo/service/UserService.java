@@ -8,6 +8,8 @@ public interface UserService {
 
     int addUser(UserDomain user);
 
+    boolean deleteById(int userId);
+
     PageInfo<UserDomain> findAllUser(int pageNum, int pageSize);
 }
 

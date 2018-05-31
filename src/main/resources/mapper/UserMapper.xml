@@ -26,6 +26,19 @@
         </trim>
     </insert>
 
+    <delete id="deleteById" parameterType="int">
+        DELETE from t_user where userId=#{userId}
+    </delete>
+
+    <update id="updateUser" parameterType="UserDomain" >
+        update t_user
+            <if test="phone != null">
+                set phone=#{phone}
+            </if>
+        where userId=#{userId}
+--         update t_user set userName=#{userName},password=#{password},phone=#{phone} where userId=#{userId}
+    </update>
+
     <select id="selectUsers" resultType="com.company.springdemo.model.UserDomain">
         SELECT
         <include refid="BASE_COLUMN"/>
