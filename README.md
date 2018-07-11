@@ -20,9 +20,9 @@ maven、spring boot、spring mvc后台流程
         
     2.4 Spring boot定时任务，已添加
     
-    2.5 Spring boot日志
+    2.5 Spring boot日志，默认使用Logback日志
     
-    2.6 Spring boot自定义配置DemoProperties.java、demo.properties配置文件
+    2.6 Spring boot自定义配置DemoProperties.java、demo.properties配置文件，已完成
     
     2.7 收取邮件，已完成，解析附件
     

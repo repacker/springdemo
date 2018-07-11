@@ -20,7 +20,7 @@ import javax.sql.DataSource;
  */
 @ConfigurationProperties
 @MapperScan(basePackages = "com.company.springdemo.dao2", sqlSessionTemplateRef = "sqlSessionTemplateOne")
-public class DataSource1Config {
+public class DataSourceConfig {
 
 //    @Primary
     /** 亲测不是必须的，可以省略 */
