@@ -1,10 +1,7 @@
-package com.company.springdemo.test;
+package com.company.springdemo.common.test;
 
-
-import com.sun.deploy.util.SessionState;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Properties;
 
 /**
@@ -16,7 +13,7 @@ public class Test {
 
     public static void main(String[] args) throws IOException {
         Properties prop=new Properties();
-        prop.load(new InputStreamReader(SessionState.Client.class.getClassLoader().getResourceAsStream("demo.properties"), "UTF-8"));
+//        prop.load(new InputStreamReader(SessionState.Client.class.getClassLoader().getResourceAsStream("demo.properties"), "UTF-8"));
         System.out.println(prop.getProperty("age"));
     }
 

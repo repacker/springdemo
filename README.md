@@ -12,7 +12,7 @@ maven、spring boot、spring mvc后台流程
               password VARCHAR(255) NOT NULL ,
               phone VARCHAR(255) NOT NULL
             ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT "用户信息表";
-    2.2 myibatis基本CURL
+    2.2 myibatis基本CURL,分页查找
     
     2.3 Druid web ui地址
         http://localhost:8080/druid/login.html
@@ -23,7 +23,11 @@ maven、spring boot、spring mvc后台流程
     2.5 Spring boot日志，默认使用Logback日志
     
     2.6 Spring boot自定义配置DemoProperties.java、demo.properties配置文件，已完成
+    2.6.2 Spring boot自定义配置demo.properties配置文件方式二
     
     2.7 收取邮件，已完成，解析附件
     
+    2.8 myibatis自动化生成xml、model、dao
+    
+    2.9 返回格式RespEntity的定义与使用
     

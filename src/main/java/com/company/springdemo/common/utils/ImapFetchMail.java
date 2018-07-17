@@ -1,4 +1,4 @@
-package com.company.springdemo.utils;
+package com.company.springdemo.common.utils;
 
 
 import com.sun.mail.imap.IMAPFolder;

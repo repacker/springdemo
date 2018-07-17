@@ -1,4 +1,4 @@
-package com.company.springdemo.config;
+package com.company.springdemo.common.config;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.apache.ibatis.session.SqlSessionFactory;
