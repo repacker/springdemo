@@ -22,9 +22,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private Environment environment;
-
     /** 
     * @Description: 返回类型必须为POJO类型才能自动解析成json格式
     * @Param: 
@@ -32,7 +29,6 @@ public class UserController {
      */ 
     @RequestMapping("/add")
     public RespEntity addUser(@RequestBody UserDomain user){
-        System.out.println("environment:" + environment.getProperty("userName") + ",age:" + environment.getProperty("age"));
         int result = userService.addUser(user);
         RespEntity respEntity;
         if(result == 1){

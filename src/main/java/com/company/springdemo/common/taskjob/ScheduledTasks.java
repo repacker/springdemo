@@ -1,4 +1,4 @@
-package com.company.springdemo.controller.task;
+package com.company.springdemo.common.taskjob;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.company.springdemo.controller.task;
+package com.company.springdemo.common.taskjob;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
