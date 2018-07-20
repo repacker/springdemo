@@ -1,15 +1,15 @@
 package com.company.springdemo.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.company.springdemo.common.base.RespCode;
 import com.company.springdemo.common.base.RespEntity;
 import com.company.springdemo.model.UserDomain;
 import com.company.springdemo.service.UserService;
-import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.PageSerializable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 //@Controller  二者使用的包也不一样
@@ -49,10 +49,10 @@ public class UserController {
         jsonpObject.put("userId","userId");
         RespEntity respEntity;
         if(result){
-            respEntity = new RespEntity(RespCode.SUCCESS,JSONObject.toJSONString(jsonpObject));
+            respEntity = new RespEntity(RespCode.SUCCESS,jsonpObject);
         }
         else {
-            respEntity = new RespEntity(RespCode.INSERT_ERROR,JSONObject.toJSONString(jsonpObject));
+            respEntity = new RespEntity(RespCode.INSERT_ERROR,jsonpObject);
         }
         return respEntity;
     }
@@ -65,11 +65,13 @@ public class UserController {
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
                     int pageSize){
         logger.info("用户查询：");
-        PageInfo<UserDomain>  list = userService.findAllUser(pageNum,pageSize);
-        JSONObject jsonpObject = new JSONObject();
-        jsonpObject.put("list",list.getList());
-        jsonpObject.put("total",list.getTotal());
-        RespEntity respEntity = new RespEntity(RespCode.SUCCESS,JSONObject.toJSONString(jsonpObject));
+//      这里也可以照着PageInfo实现一个MyPageInfo
+//        PageInfo<UserDomain>  list = userService.findAllUser(pageNum,pageSize);
+        PageSerializable<UserDomain> list = userService.findAllUser(pageNum,pageSize);
+        JSONObject jsonpData = new JSONObject();
+        jsonpData.put("list", JSON.toJSON(list.getList()));
+        jsonpData.put("total",list.getTotal());
+        RespEntity respEntity = new RespEntity(RespCode.SUCCESS, jsonpData);
         return respEntity;
     }
 

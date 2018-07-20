@@ -1,7 +1,7 @@
 package com.company.springdemo.common.config;
 
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @Auther: whs
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @Description: Cors的跨域处理，前端访问暂时不可用
  */
 //@Configuration
-public class DomainWebAppConfigurer extends WebMvcConfigurerAdapter {
+public class DomainWebAppConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

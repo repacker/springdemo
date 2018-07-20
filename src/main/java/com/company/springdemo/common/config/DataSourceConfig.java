@@ -8,6 +8,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -18,11 +19,11 @@ import javax.sql.DataSource;
  * @Date: 2018/5/30 16:10
  * @Description:
  */
-@ConfigurationProperties
-@MapperScan(basePackages = "com.company.springdemo.dao2", sqlSessionTemplateRef = "sqlSessionTemplateOne")
+//@ConfigurationProperties
+//@MapperScan(basePackages = "com.company.springdemo.dao", sqlSessionTemplateRef = "sqlSessionTemplateOne")
 public class DataSourceConfig {
 
-//    @Primary
+    @Primary
     /** 亲测不是必须的，可以省略 */
     @Bean("dataSourceOne")
     @ConfigurationProperties("spring.datasource.druid.one")

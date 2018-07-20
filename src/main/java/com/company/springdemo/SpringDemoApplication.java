@@ -12,10 +12,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableScheduling
-@MapperScan("com.company.springdemo.dao")
+//@MapperScan("com.company.springdemo.dao")     //  如果注释，则该包下所有的dao均需加  @Mapper   注解
 public class SpringDemoApplication {
 
     private final static Logger logger = LoggerFactory.getLogger(SpringDemoApplication.class);
+
+    private static String active_environment;
 
     public static void main(String[] args) {
         logger.info("springDemo已启动");
@@ -28,6 +30,14 @@ public class SpringDemoApplication {
                 new String[]{"config/demo.properties"}
         ));
         ConfigurableApplicationContext context = application.run(args);
+        //环境信息
+        active_environment = context.getEnvironment().getProperty("spring.profiles.active");
+
+        if ("pro".equals(active_environment)) {
+            logger.info("线上环境运行...");
+        } else if ("dev".equals(active_environment)) {
+            logger.info("开发环境运行...");
+        }
 
         logger.info("SpringDemoApplication.main 执行完毕！");
 
