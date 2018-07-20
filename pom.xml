@@ -16,7 +16,6 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
-
     </parent>
 
     <properties>
@@ -64,6 +63,7 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.9</version>
         </dependency>
+
         <!-- redis缓存数据库 -->
         <!--<dependency>-->
             <!--<groupId>org.springframework.boot</groupId>-->
@@ -114,6 +114,11 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>25.1-jre</version>
         </dependency>
 
     </dependencies>
