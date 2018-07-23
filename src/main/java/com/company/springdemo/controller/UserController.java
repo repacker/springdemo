@@ -45,14 +45,14 @@ public class UserController {
     public RespEntity deleteById(int userId){
         logger.info("用户删除：" + userId);
         boolean  result = userService.deleteById(userId);
-        JSONObject jsonpObject = new JSONObject();
-        jsonpObject.put("userId","userId");
+        JSONObject jsonpData = new JSONObject();
+        jsonpData.put("userId","userId");
         RespEntity respEntity;
         if(result){
-            respEntity = new RespEntity(RespCode.SUCCESS,jsonpObject);
+            respEntity = new RespEntity(RespCode.SUCCESS,jsonpData);
         }
         else {
-            respEntity = new RespEntity(RespCode.INSERT_ERROR,jsonpObject);
+            respEntity = new RespEntity(RespCode.INSERT_ERROR,jsonpData);
         }
         return respEntity;
     }
