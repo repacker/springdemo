@@ -1,7 +1,6 @@
 package com.company.springdemo;
 
 import com.company.springdemo.common.listenter.PropertiesListener;
-import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -9,9 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableScheduling
+@EnableSwagger2
 //@MapperScan("com.company.springdemo.dao")     //  如果注释，则该包下所有的dao均需加  @Mapper   注解
 public class SpringDemoApplication {
 
