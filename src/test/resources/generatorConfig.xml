@@ -27,6 +27,7 @@
 
         <!--要生成那些表更改tableName和domainObjectName就可以-->
         <table tableName="pay_order_serial_number" domainObjectName="PayOrderSerialNumber" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table tableName="pay_order_accounting_detail" domainObjectName="PayOrderAccountingDetail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
 
     </context>
 </generatorConfiguration>

@@ -1,0 +1,14 @@
+# ignore all files
+
+/*
+/.idea/*
+/target/*
+.DS_Store
+
+# these files need to synchronize to git
+#     忽略全部内容，但是不忽略 .gitignore 文件、根目录下的 /src/ 目录
+!/src/
+!/.gitignore
+!/git.sh
+!/pom.xml
+!/README.md

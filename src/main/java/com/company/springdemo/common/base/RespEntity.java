@@ -1,7 +1,5 @@
 package com.company.springdemo.common.base;
 
-import com.alibaba.fastjson.JSONObject;
-
 /**
  * @description: 返回响应实体
  * @author: whs
@@ -13,10 +11,10 @@ public class RespEntity {
 
     private String message;
 
-    private String data;
+//    Object均有很大的灵活性，比String要好
+    private Object data;
 
-    public RespEntity(){
-
+    private RespEntity(){
     }
 
     public RespEntity(RespCode respCode){
@@ -24,22 +22,16 @@ public class RespEntity {
         this.message = respCode.getMsg();
     }
 
-    public RespEntity(RespCode respCode, String data){
+    public RespEntity(RespCode respCode, Object data){
         this.code = respCode.getCode();
         this.message = respCode.getMsg();
         this.data = data;
     }
 
-    public RespEntity(Integer code, String message, String data){
+    public RespEntity(Integer code, String message, Object data){
         this.code = code;
         this.message = message;
         this.data = data;
-    }
-
-    public RespEntity(Integer code, String message, JSONObject data){
-        this.code = code;
-        this.message = message;
-        this.data = JSONObject.toJSONString(data);
     }
 
     public Integer getCode() {
@@ -58,7 +50,7 @@ public class RespEntity {
         this.message = message;
     }
 
-    public String getData() {
+    public Object getData() {
         return data;
     }
 

@@ -23,7 +23,7 @@ maven、spring boot、spring mvc后台流程
     2.5 Spring boot日志，默认使用Logback日志
     
     2.6 Spring boot自定义配置DemoProperties.java、demo.properties配置文件，已完成
-    2.6.2 Spring boot自定义配置demo.properties配置文件方式二
+    2.6.1 Spring boot自定义配置demo.properties配置文件方式二
     
     2.7 收取邮件，已完成，解析附件
     
@@ -31,3 +31,6 @@ maven、spring boot、spring mvc后台流程
     
     2.9 返回格式RespEntity的定义与使用
     
+    3.0 添加生产、测试环境配置
+    3.1 测试lombok的使用
+    3.2 生产接口Swagger2的使用
