@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @EnableAutoConfiguration
 @SpringBootTest(classes = SpringDemoApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles("offline")
+@ActiveProfiles("dev")//启动配置测试
 public class Test extends AbstractTransactionalJUnit4SpringContextTests {
     @Before
     public void setUp() {
