@@ -3,8 +3,7 @@ package com.company.springdemo.interceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 /**
  * @author xuys
@@ -12,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @date 2018/5/31
  */
 @Component
-public class WebAppConfig implements WebMvcConfigurer {
+public class WebAppConfig extends WebMvcConfigurationSupport {
 
     @Autowired
     UserInterceptor userInterceptor;

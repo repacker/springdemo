@@ -46,11 +46,9 @@ public class UserInterceptor implements HandlerInterceptor {
         //1.获取当前登录用户cookie
         Cookie ssoCookie = CookieUtil.getCookie(request, environment.getProperty("login.cookieName"));
         System.out.println(request.getRequestURI());
-//        System.out.println("=======GUAZISSO=========");
-//        System.out.println(environment.getProperty("login.cookieName"));
-        System.out.println("ssoCookie:" + ssoCookie);
-
         boolean isDebug = Boolean.valueOf(environment.getProperty("isDebug"));
+
+        System.out.println("ssoCookie return isDebug : " + isDebug);
         if (isDebug) {
             return true;
         }
@@ -60,10 +58,11 @@ public class UserInterceptor implements HandlerInterceptor {
             returnJson.put("code","99999");
             returnJson.put("message","请登陆");
             sendJsonMessage(request, response, returnJson);
+
+            System.out.println("ssoCookie return false : ");
             return false;
-        }else {
-          System.out.println("ssoCookie.getValue() : " + ssoCookie.getValue());
         }
+        System.out.println("ssoCookie.getValue() : " + ssoCookie.getValue());
 
         //todo 2.缓存当前登录用户信息
 
