@@ -84,8 +84,11 @@
             <artifactId>lombok</artifactId>
             <version>1.16.16</version>
         </dependency>
-
-
+        <!--固定端口登陆验证配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!--自定义配置文件加载依赖类-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
