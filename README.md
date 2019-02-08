@@ -37,3 +37,5 @@ maven、spring boot、spring mvc后台流程
     3.3 redis数据库
     3.4 PostConstruct的使用
     3.5 注解的使用
+    3.6 spring boot 使用TaskExecutor实现异步任务
+    
