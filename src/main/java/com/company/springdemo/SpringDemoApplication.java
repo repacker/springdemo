@@ -28,7 +28,7 @@ public class SpringDemoApplication {
         SpringApplication application = new SpringApplication(SpringDemoApplication.class);
         //=================== 初始化配置信息 ===================//
         application.addListeners(new PropertiesListener(
-                new String[]{"config/demo.properties"}
+                new String[]{"config/demo.properties", "config/mail.properties"}
         ));
         ConfigurableApplicationContext context = application.run(args);
         //环境信息
