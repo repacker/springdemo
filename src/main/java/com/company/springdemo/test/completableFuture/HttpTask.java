@@ -1,4 +1,4 @@
-package com.company.springdemo.test;
+package com.company.springdemo.test.completableFuture;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
