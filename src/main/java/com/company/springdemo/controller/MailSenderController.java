@@ -24,7 +24,7 @@ public class MailSenderController {
     private JavaMailSender javaMailSender;
 
     /** 
-     * @Description: 该方法发送简单邮件 
+     * @Description: 该方法发送简单邮件
      * @Param: 
      * @return:
      */ 
