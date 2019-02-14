@@ -22,7 +22,7 @@ public class PropertiesTest {
 
     @Test
     public void testProperties() throws IOException {
-        Properties prop=new Properties();
+        Properties prop = new Properties();
         prop.load(new InputStreamReader(SessionState.Client.class.getClassLoader().getResourceAsStream("demo.properties"), "UTF-8"));
         System.out.println(prop.getProperty("age"));
     }

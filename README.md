@@ -43,3 +43,4 @@ maven、spring boot、spring mvc后台流程
     3.9 CompletableFuture的使用
     4.0 并发框架Disruptor的使用
     4.1 okhttp3请求访问接口工具类
+    4.2 Json与List的相互转换
