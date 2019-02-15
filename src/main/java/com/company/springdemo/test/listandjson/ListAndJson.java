@@ -16,6 +16,11 @@ import java.util.List;
 @Component
 public class ListAndJson {
 
+    /** 
+     * @Description: 该方法Json与List的相互转换使用 
+     * @Param: 
+     * @return:
+     */ 
     public void getListAndJson(){
         DemoProperties demoProperties1 = new DemoProperties();
         demoProperties1.setAge("12");
