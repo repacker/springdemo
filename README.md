@@ -38,3 +38,4 @@ maven、spring boot、spring mvc后台流程
     4.1 okhttp3请求访问接口工具类
     4.2 Json与List的相互转换
     4.3 jdk动态代理、cglib动态代理
+    4.4 观察者模式的拆分与讲解
