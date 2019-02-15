@@ -17,7 +17,7 @@ import java.util.List;
 public class ListAndJson {
 
     /** 
-     * @Description: 该方法Json与List的相互转换使用 
+     * @Description: 该方法Json与List的相互转换使用
      * @Param: 
      * @return:
      */ 
