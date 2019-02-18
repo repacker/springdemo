@@ -39,3 +39,4 @@ maven、spring boot、spring mvc后台流程
     4.2 Json与List的相互转换
     4.3 jdk动态代理、cglib动态代理
     4.4 观察者模式的拆分与讲解
+    4.5 单例，枚举
