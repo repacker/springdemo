@@ -17,53 +17,55 @@ package com.company.springdemo.interceptor;
 
 import com.company.springdemo.common.base.RespCode;
 import com.company.springdemo.common.base.RespEntity;
-import com.company.springdemo.common.utils.CookieUtil;
+import com.company.springdemo.common.utils.IllegalStrFilterUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
 
 /**
  * 校验及获取登录用户信息
  *
- * @author whs
- * @date 2018/5/15
+ * @author 请求数据安全校验
+ * @date 2018/7/4
  */
 @Component
-public class UserInterceptor extends BaseAction implements HandlerInterceptor {
+public class RequestCheckInterceptor extends BaseAction implements HandlerInterceptor {
 
-    private final static Logger log = LoggerFactory.getLogger(UserInterceptor.class);
-
-    @Autowired
-    private Environment environment;
+    private final static Logger log = LoggerFactory.getLogger(RequestCheckInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //1.获取当前登录用户cookie
-        Cookie ssoCookie = CookieUtil.getCookie(request, environment.getProperty("login.cookieName"));
-        log.info(request.getRequestURI());
-        boolean isDebug = Boolean.valueOf(environment.getProperty("isDebug"));
-
-        log.info("ssoCookie return isDebug : " + isDebug);
-        if (isDebug) {
-            return true;
-        }
-
-        if (ssoCookie == null) {
-            sendJsonMessage(request, response, new RespEntity(RespCode.NOT_LOGIN));
-            log.info("ssoCookie return false");
+        Enumeration<?> params = request.getParameterNames();
+        //url校验
+        String requestUrl = request.getRequestURI();
+        String errorMsg = IllegalStrFilterUtil.isSafeUrl(requestUrl);
+        if (StringUtils.isNotEmpty(errorMsg)) {
+            sendJsonMessage(request, response, new RespEntity(RespCode.URL_NOT_ILLEGAL, errorMsg));
             return false;
         }
-        log.info("ssoCookie.getValue() : " + ssoCookie.getValue());
+        //参数校验
+        while (params.hasMoreElements()) {
+            String paramKey = (String) params.nextElement();
+            String paramValue = request.getParameter(paramKey);
+            if (StringUtils.isNotBlank(paramValue)) {
+                errorMsg = IllegalStrFilterUtil.isSafeParam(paramValue);
+                if (StringUtils.isNotEmpty(errorMsg)) {
+                    break;
+                }
+            }
+        }
 
-        //todo 2.缓存当前登录用户信息
+        if (StringUtils.isNotEmpty(errorMsg)) {
+            sendJsonMessage(request, response, new RespEntity(RespCode.PARAMS_NOT_ILLEGAl, errorMsg));
+            return false;
+        }
 
         return true;
     }
