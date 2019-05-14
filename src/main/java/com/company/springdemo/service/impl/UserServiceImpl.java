@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.RoundingMode;
 import java.util.List;
 import java.util.Random;
 
@@ -47,8 +46,6 @@ public class UserServiceImpl implements UserService {
         try {
             int time = rand.nextInt(5000);
             logger.info("查询2休息" + time + "毫秒！");
-
-
             Thread.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();

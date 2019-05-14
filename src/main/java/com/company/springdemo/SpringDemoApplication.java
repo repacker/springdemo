@@ -13,7 +13,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableScheduling
 @EnableSwagger2
-//@MapperScan("com.company.springdemo.dao")     //  如果注释，则该包下所有的dao均需加  @Mapper   注解
+//@MapperScan("com.company.springdemo.dao")
+//如果注释，则该包下所有的dao均需加  @Mapper   注解
 public class SpringDemoApplication {
 
     private final static Logger logger = LoggerFactory.getLogger(SpringDemoApplication.class);
@@ -41,7 +42,6 @@ public class SpringDemoApplication {
         }
 
         logger.info("SpringDemoApplication.main 执行完毕！");
-
 
     }
 
