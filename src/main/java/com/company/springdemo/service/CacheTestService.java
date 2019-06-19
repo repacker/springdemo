@@ -1,7 +1,5 @@
-package com.company.springdemo.controller;
+package com.company.springdemo.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +10,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CacheTestService {
-
-    private final static Logger logger = LoggerFactory.getLogger(CacheTestService.class);
 
     @Cacheable(value = "getData")
     public String getData() {

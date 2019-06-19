@@ -2,7 +2,7 @@ package com.company.springdemo;
 
 import com.company.springdemo.common.utils.redis.MsService;
 import com.company.springdemo.common.utils.redis.ThreadB;
-import com.company.springdemo.controller.CacheTestService;
+import com.company.springdemo.service.CacheTestService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
