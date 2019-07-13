@@ -1,6 +1,7 @@
 # springdemo
 maven、spring boot、spring mvc后台流程
 1、热部署的添加
+
     option + command + shift + ／容易忘记这最后一步
 2、基本架构的搭建
 
@@ -44,3 +45,8 @@ maven、spring boot、spring mvc后台流程
         找出链表的第一个公共结点、
     4.7 拦截器的使用，sql注解的过滤
     4.8 mybaites plus 脚本的使用与自动生成
+    4.9 jdk1.8 stream函数式编程练习demo
+    
+3、问题定位
+    
+    3.1 解决Mybatis-plus与spring boot版本不一致，不能正常启动的问题
