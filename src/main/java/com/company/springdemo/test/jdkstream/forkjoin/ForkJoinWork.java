@@ -17,7 +17,7 @@ public class ForkJoinWork extends RecursiveTask<Long> {
         this.start = start;
         this.end = end;
     }
-    
+
     @Override
     protected Long compute() {
         //判断是否是拆分完毕
@@ -36,6 +36,7 @@ public class ForkJoinWork extends RecursiveTask<Long> {
             right.fork();//拆分，并压入线程队列
             ForkJoinWork left = new ForkJoinWork(middle + 1, end);
             left.fork();//拆分，并压入线程队列
+            System.out.println("递归次数开始" + start + "，递归次数结束" + middle);
 
             //合并
             return right.join() + left.join();
