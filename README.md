@@ -46,6 +46,7 @@ maven、spring boot、spring mvc后台流程
     4.7 拦截器的使用，sql注解的过滤
     4.8 mybaites plus 脚本的使用与自动生成
     4.9 jdk1.8 stream函数式编程练习demo
+    5.0 JDK8 双冒号及借口实现方法用法
     
 3、问题定位
     
