@@ -26,37 +26,35 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /** 
-    * @Description: 返回类型必须为POJO类型才能自动解析成json格式
-    * @Param: 
-    * @return:
-     */ 
+    /**
+     * @Description: 返回类型必须为POJO类型才能自动解析成json格式
+     * @Param:
+     * @return:
+     */
     @RequestMapping("/add")
-    public RespEntity addUser(@RequestBody UserDomain user){
+    public RespEntity addUser(@RequestBody UserDomain user) {
         int result = userService.addUser(user);
         RespEntity respEntity;
-        if(result == 1){
-            respEntity = new RespEntity(RespCode.SUCCESS,JSONObject.toJSONString(user));
-        }
-        else {
-            respEntity = new RespEntity(RespCode.INSERT_ERROR,JSONObject.toJSONString(user));
+        if (result == 1) {
+            respEntity = new RespEntity(RespCode.SUCCESS, JSONObject.toJSONString(user));
+        } else {
+            respEntity = new RespEntity(RespCode.INSERT_ERROR, JSONObject.toJSONString(user));
         }
         return respEntity;
     }
 
     @ResponseBody
     @RequestMapping("/delete")
-    public RespEntity deleteById(int userId){
+    public RespEntity deleteById(int userId) {
         logger.info("用户删除：" + userId);
-        boolean  result = userService.deleteById(userId);
+        boolean result = userService.deleteById(userId);
         JSONObject jsonpData = new JSONObject();
-        jsonpData.put("userId","userId");
+        jsonpData.put("userId", "userId");
         RespEntity respEntity;
-        if(result){
-            respEntity = new RespEntity(RespCode.SUCCESS,jsonpData);
-        }
-        else {
-            respEntity = new RespEntity(RespCode.INSERT_ERROR,jsonpData);
+        if (result) {
+            respEntity = new RespEntity(RespCode.SUCCESS, jsonpData);
+        } else {
+            respEntity = new RespEntity(RespCode.INSERT_ERROR, jsonpData);
         }
         return respEntity;
     }
@@ -67,8 +65,8 @@ public class UserController {
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
-                    int pageSize){
-        number ++;
+                    int pageSize) {
+        number++;
         logger.info("请求参数：" + number);
         logger.info("请求service对象：" + userService);
         pageSize = number;
@@ -84,10 +82,10 @@ public class UserController {
         }
 //      这里也可以照着PageInfo实现一个MyPageInfo
 //        PageInfo<UserDomain>  list = userService.findAllUser(pageNum,pageSize);
-        PageSerializable<UserDomain> list = userService.findAllUser(pageNum,pageSize);
+        PageSerializable<UserDomain> list = userService.findAllUser(pageNum, pageSize);
         JSONObject jsonpData = new JSONObject();
         jsonpData.put("list", JSON.toJSON(list.getList()));
-        jsonpData.put("total",list.getTotal());
+        jsonpData.put("total", list.getTotal());
         RespEntity respEntity = new RespEntity(RespCode.SUCCESS, jsonpData);
         logger.info("请求参数：" + number);
         return respEntity;

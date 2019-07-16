@@ -21,20 +21,20 @@ import java.util.Properties;
  */
 public class ImapFetchMail {
     public static void main(String[] args) throws MessagingException {
-        String host = "newmail.guazi.com";
+        String host = "newmail.xxx.com";
         String port = "993";
-        String username = "wanghongshuai";
+        String username = "xxx";
         String password = "";
         ImapFetchMail fetchMail = new ImapFetchMail();
 
         IMAPFolder folder = null;
-        IMAPStore  store = fetchMail.getCollection(host, port, username, password);
+        IMAPStore store = fetchMail.getCollection(host, port, username, password);
         try {
-            folder=(IMAPFolder)store.getFolder("inbox"); //收件箱
+            folder = (IMAPFolder) store.getFolder("inbox"); //收件箱
             // 使用只读方式打开收件箱
             folder.open(Folder.READ_WRITE);
             int size = folder.getMessageCount();
-            System.out.println("这里是打印的条数=="+size);
+            System.out.println("这里是打印的条数==" + size);
         } catch (NoSuchProviderException e) {
             e.printStackTrace();
         } catch (MessagingException e) {
@@ -55,39 +55,39 @@ public class ImapFetchMail {
         System.out.println("接收完毕！");
     }
 
-    public void getFullFonder(IMAPStore  store) throws MessagingException {
+    public void getFullFonder(IMAPStore store) throws MessagingException {
         Folder defaultFolder = store.getDefaultFolder();
         Folder[] allFolder = defaultFolder.list();
         for (int i = 0; i < allFolder.length; i++) {
-            System.out.println("这个是服务器中的文件夹="+allFolder[i].getFullName());
+            System.out.println("这个是服务器中的文件夹=" + allFolder[i].getFullName());
         }
     }
 
-    public IMAPStore getCollection(String host,String port,String username,String password) throws MessagingException {
+    public IMAPStore getCollection(String host, String port, String username, String password) throws MessagingException {
         final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
         Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
         Properties props = System.getProperties();
         props.setProperty("mail.imap.socketFactory.class", SSL_FACTORY);
-        props.setProperty("mail.imap.socketFactory.port",port);
-        props.setProperty("mail.store.protocol","imap");
+        props.setProperty("mail.imap.socketFactory.port", port);
+        props.setProperty("mail.store.protocol", "imap");
         props.setProperty("mail.imap.host", host);
         props.setProperty("mail.imap.port", port);
         props.setProperty("mail.imap.auth.login.disable", "true");
-        Session session = Session.getDefaultInstance(props,null);
+        Session session = Session.getDefaultInstance(props, null);
         session.setDebug(false);
-        IMAPStore store= (IMAPStore)session.getStore("imap");  // 使用imap会话机制，连接服务器
-        store.connect(host,Integer.valueOf(port),username,password);
+        IMAPStore store = (IMAPStore) session.getStore("imap");  // 使用imap会话机制，连接服务器
+        store.connect(host, Integer.valueOf(port), username, password);
         return store;
     }
 
-    public void getMessageInfo(IMAPFolder folder,Message[] messages) throws MessagingException {
+    public void getMessageInfo(IMAPFolder folder, Message[] messages) throws MessagingException {
         // 打印不同状态的邮件数量
         System.out.println("收件箱中共" + messages.length + "封邮件!");
         System.out.println("收件箱中共" + folder.getUnreadMessageCount() + "封未读邮件!");
         System.out.println("收件箱中共" + folder.getNewMessageCount() + "封新邮件!");
         System.out.println("收件箱中共" + folder.getDeletedMessageCount() + "封已删除邮件!");
 
-        for (int i = 0; i <5; i++) {
+        for (int i = 0; i < 5; i++) {
             String from = messages[i].getFrom()[0].toString();
             String subject = messages[i].getSubject();
             Date date = messages[i].getSentDate();

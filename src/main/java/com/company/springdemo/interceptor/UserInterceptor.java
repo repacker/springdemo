@@ -15,9 +15,11 @@
  */
 package com.company.springdemo.interceptor;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.company.springdemo.common.base.RespCode;
+import com.company.springdemo.common.base.RespEntity;
 import com.company.springdemo.common.utils.CookieUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
@@ -27,7 +29,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 
 /**
  * 校验及获取登录用户信息
@@ -36,7 +37,9 @@ import java.io.PrintWriter;
  * @date 2018/5/15
  */
 @Component
-public class UserInterceptor implements HandlerInterceptor {
+public class UserInterceptor extends BaseAction implements HandlerInterceptor {
+
+    private final static Logger log = LoggerFactory.getLogger(UserInterceptor.class);
 
     @Autowired
     private Environment environment;
@@ -45,25 +48,20 @@ public class UserInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //1.获取当前登录用户cookie
         Cookie ssoCookie = CookieUtil.getCookie(request, environment.getProperty("login.cookieName"));
-        System.out.println(request.getRequestURI());
-//        System.out.println("=======GUAZISSO=========");
-//        System.out.println(environment.getProperty("login.cookieName"));
-        System.out.println("ssoCookie:" + ssoCookie);
-
+        log.info(request.getRequestURI());
         boolean isDebug = Boolean.valueOf(environment.getProperty("isDebug"));
+
+        log.info("ssoCookie return isDebug : " + isDebug);
         if (isDebug) {
             return true;
         }
 
         if (ssoCookie == null) {
-            JSONObject returnJson = new JSONObject();
-            returnJson.put("code","99999");
-            returnJson.put("message","请登陆");
-            sendJsonMessage(request, response, returnJson);
+            sendJsonMessage(request, response, new RespEntity(RespCode.NOT_LOGIN));
+            log.info("ssoCookie return false");
             return false;
-        }else {
-          System.out.println("ssoCookie.getValue() : " + ssoCookie.getValue());
         }
+        log.info("ssoCookie.getValue() : " + ssoCookie.getValue());
 
         //todo 2.缓存当前登录用户信息
 
@@ -78,22 +76,6 @@ public class UserInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
 
-    }
-
-    /**
-     * 将某个对象转换成json格式并发送到客户端
-     * @param response
-     * @param obj
-     * @throws Exception
-     */
-    public void sendJsonMessage(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
-        String jsonType = request.getParameter("jsonType");
-        PrintWriter writer = response.getWriter();
-        writer.print(JSONObject.toJSONString(obj, SerializerFeature.WriteMapNullValue,
-                    SerializerFeature.WriteDateUseDateFormat));
-
-        writer.close();
-        response.flushBuffer();
     }
 
 }

@@ -9,8 +9,7 @@ import com.company.springdemo.service.UserService;
 import com.github.pagehelper.PageSerializable;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/swagger")
 @Api(value = "RestApiController|一个用来测试swagger注解的控制器")
+@Slf4j
 public class RestApiController {
-
-    private final static Logger logger = LoggerFactory.getLogger(RestApiController.class);
 
     @Autowired
     private UserService userService;
@@ -40,8 +38,8 @@ public class RestApiController {
                     int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
                     int pageSize){
-        logger.info("请求service对象：" + userService);
-        logger.info("用户查询：");
+        log.info("请求service对象：" + userService);
+        log.info("用户查询：");
 //      这里也可以照着PageInfo实现一个MyPageInfo
 //        PageInfo<UserDomain>  list = userService.findAllUser(pageNum,pageSize);
         PageSerializable<UserDomain> list = userService.findAllUser(pageNum,pageSize);

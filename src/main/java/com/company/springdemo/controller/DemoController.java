@@ -25,52 +25,52 @@ public class DemoController {
     @Autowired
     DemoProperties demoProperties;
 
-    /** 
-    * @Description:  properties注入的两种方式
-    * @Param: 
-    * @return:
-     */ 
+    /**
+     * @Description: properties注入的两种方式
+     * @Param:
+     * @return:
+     */
     @ResponseBody
     @RequestMapping("/userName")
-    public String userName(){
+    public String userName() {
         logger.info("environment:" + environment.getProperty("userName") + ",age:" + environment.getProperty("age"));
         logger.info("userName:" + demoProperties.getUserName());
         return "userName:" + demoProperties.getUserName();
     }
 
-    /** 
-    * @Description: 同上
-    * @Param: 
-    * @return:
-     */ 
+    /**
+     * @Description: 同上
+     * @Param:
+     * @return:
+     */
     @ResponseBody
     @RequestMapping(value = "/age", produces = "application/json; charset=UTF-8")
-    public String age(){
+    public String age() {
         System.out.println("age:" + demoProperties.getAge());
         return "age:" + demoProperties.getAge();
     }
 
     /**
-    * @Description:  ResponseBody注释、form-data、
+     * @Description: ResponseBody注释、form-data、
      * x-www-form-urlencoded三种方式均可以获得userName
-    * @Param: 
-    * @return:
-     */ 
+     * @Param:
+     * @return:
+     */
 //    @ResponseBody
     @RequestMapping("/userNameJ")
-    public String getUserName(String userName){
+    public String getUserName(String userName) {
         logger.info("userName:" + userName);
         return "userName:" + userName;
     }
 
-    /** 
-    * @Description: 描述测试待定
-    * @Param: 
-    * @return:
-     */ 
+    /**
+     * @Description: 描述测试待定
+     * @Param:
+     * @return:
+     */
     @ResponseBody
     @RequestMapping(value = "/userNameJ2", produces = "application/json; charset=UTF-8")
-    public String getUserName2(String userName){
+    public String getUserName2(String userName) {
         logger.info("userName:" + userName);
         return "userName:" + userName;
     }
