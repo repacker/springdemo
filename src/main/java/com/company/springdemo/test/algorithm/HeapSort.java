@@ -20,6 +20,7 @@ public class HeapSort {
             //交换堆顶和最后一个元素
             swap(a, 0, arrayLength - 1 - i);
         }
+        System.out.println("buildMaxHeap end:" + Arrays.toString(a));
     }
 
     //对data数组从0到lastIndex建大顶堆
