@@ -84,5 +84,22 @@ public class TreeSolution {
         TreeSolution treeSolution = new TreeSolution();
         TreeNode treeNode = treeSolution.reConstructBinaryTree(pre, in);
         treeSolution.postOrder(treeNode);
+        treeSolution.revertNode(treeNode);
+        System.out.println();
+        treeSolution.postOrder(treeNode);
     }
+
+    // 二叉树反转
+    public void revertNode(TreeNode root){
+        if(root != null){
+            TreeNode tmp = root.left;
+            root.left = root.right;
+            root.right = tmp;
+            revertNode(root.left);
+            revertNode(root.right);
+        }
+
+    }
+
+
 }
