@@ -16,7 +16,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] a = {49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64};
-        quick(a);
+        quickSort(a, 0, a.length - 1);
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i] + ",");
         }
@@ -57,10 +57,4 @@ public class QuickSort {
         }
     }
 
-    public static void quick(int[] a) {
-        //查看数组是否为空
-        if (a.length > 0) {
-            quickSort(a, 0, a.length - 1);
-        }
-    }
 }

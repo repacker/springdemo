@@ -1,9 +1,11 @@
 package com.company.springdemo.test.algorithm;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 /**
  * @Auther: whs
  * @Date: 2019/2/18 13:25
- * @Description:
+ * @Description: 浅析二叉树
  */
 public class TreeSolution {
     public class TreeNode {
@@ -87,11 +89,13 @@ public class TreeSolution {
         treeSolution.revertNode(treeNode);
         System.out.println();
         treeSolution.postOrder(treeNode);
+        System.out.println(treeSolution.checkIsBalence(treeNode));
+        
     }
 
     // 二叉树反转
-    public void revertNode(TreeNode root){
-        if(root != null){
+    public void revertNode(TreeNode root) {
+        if (root != null) {
             TreeNode tmp = root.left;
             root.left = root.right;
             root.right = tmp;
@@ -101,5 +105,30 @@ public class TreeSolution {
 
     }
 
+    // 平衡二叉树判断处理
+    public Pair<Boolean, Integer> checkIsBalence(TreeNode root) {
+        if (root == null) {
+            return Pair.of(true, 0);
+        } else if (root.left == null && root.right != null) {
+            return checkIsBalence(root.right);
+        } else if (root.right == null && root.left != null) {
+            return checkIsBalence(root.left);
+        }
+        Pair<Boolean, Integer> checkLeftResult = checkIsBalence(root.left);
+        Pair<Boolean, Integer> checkRightResult = checkIsBalence(root.right);
+        if (!checkLeftResult.getLeft()) {
+            return checkLeftResult;
+        }
+        if (!checkRightResult.getLeft()) {
+            return checkRightResult;
+        }
+        int compareResult = checkLeftResult.getRight() - checkRightResult.getRight();
+        if (compareResult >= -1 && compareResult <= 1) {
+            int max = checkLeftResult.getRight() > checkRightResult.getRight() ? checkLeftResult.getRight() : checkRightResult.getRight();
+            return Pair.of(true, max + 1);
+        } else {
+            return Pair.of(false, checkRightResult.getRight());
+        }
+    }
 
 }
