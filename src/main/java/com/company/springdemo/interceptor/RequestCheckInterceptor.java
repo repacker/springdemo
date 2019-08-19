@@ -18,9 +18,8 @@ package com.company.springdemo.interceptor;
 import com.company.springdemo.common.base.RespCode;
 import com.company.springdemo.common.base.RespEntity;
 import com.company.springdemo.common.utils.IllegalStrFilterUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,9 +35,8 @@ import java.util.Enumeration;
  * @date 2018/7/4
  */
 @Component
+@Slf4j
 public class RequestCheckInterceptor extends BaseAction implements HandlerInterceptor {
-
-    private final static Logger log = LoggerFactory.getLogger(RequestCheckInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
