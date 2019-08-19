@@ -18,8 +18,7 @@ package com.company.springdemo.interceptor;
 import com.company.springdemo.common.base.RespCode;
 import com.company.springdemo.common.base.RespEntity;
 import com.company.springdemo.common.utils.CookieUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
@@ -37,9 +36,8 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2018/5/15
  */
 @Component
+@Slf4j
 public class UserInterceptor extends BaseAction implements HandlerInterceptor {
-
-    private final static Logger log = LoggerFactory.getLogger(UserInterceptor.class);
 
     @Autowired
     private Environment environment;
