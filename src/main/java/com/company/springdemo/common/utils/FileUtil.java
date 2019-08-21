@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * FileUtil
  *
- * @author wenxinlin@guazi.com
+ * @author whs
  * @date 2018/8/16 下午5:26
  **/
 public class FileUtil {
