@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         try {
             int time = rand.nextInt(5000);
             log.info("查询2休息" + time + "毫秒！");
-            Thread.sleep(time);
+            Thread.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
