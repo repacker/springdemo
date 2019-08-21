@@ -81,18 +81,18 @@
         </dependency>
 
         <!-- Mybatis-plus -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.0.3</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.baomidou</groupId>-->
+            <!--<artifactId>mybatis-plus-boot-starter</artifactId>-->
+            <!--<version>3.0.3</version>-->
+        <!--</dependency>-->
 
         <!-- Mybatis-plus 代码生成器 -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.0.3</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.baomidou</groupId>-->
+            <!--<artifactId>mybatis-plus-generator</artifactId>-->
+            <!--<version>3.0.3</version>-->
+        <!--</dependency>-->
 
         <!-- Mybatis-plus Freemarker 模板引擎 -->
         <dependency>
@@ -144,6 +144,20 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.31</version>
+        </dependency>
+
+        <!--生成excel文件类-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>1.1.2-beta5</version>
+        </dependency>
+
+        <!--文件操作工具类-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
         </dependency>
 
         <!--disruptor并发工具包-->
