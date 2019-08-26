@@ -48,6 +48,7 @@ maven、spring boot、spring mvc后台流程
     4.9 jdk1.8 stream函数式编程练习demo
     5.0 JDK8 双冒号及借口实现方法用法
     5.1 自定义注解的使用
+    5.2 rpc的实现原理，了解dubbo的开发流程有助于该原理的理解
     
 3、问题定位
     
