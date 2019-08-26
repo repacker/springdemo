@@ -18,7 +18,7 @@ import java.net.Socket;
  * 将远程服务调用所需要的接口类，方法名，参数列表等编码参数发送给服务提供者
  * 同步阻塞等待服务端返回应答，获取应答之后返回
  */
-public class RpcImporter<S> {
+public class RpcConsumer<S> {
 
     public S importer(final Class<?> serviceClass, final InetSocketAddress addr) {
         return (S) Proxy.newProxyInstance(serviceClass.getClassLoader(), new Class<?>[]{serviceClass.getInterfaces()[0]}, new InvocationHandler() {

@@ -1,4 +1,4 @@
-package com.company.springdemo.test.rpc.exporter;
+package com.company.springdemo.test.rpc.server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,14 +13,13 @@ import java.util.concurrent.Executors;
 /**
  * @Auther: whs
  * @Date: 2019/2/27 16:59
- * @Description:
- * RPC服务端发布者：
+ * @Description: RPC服务端发布者：
  * 作为服务端，监听客户端的TCP连接，接收到新的客户端连接之后，将其封装成Task，由线程池执行
  * 将客户端发送的码流反序列化生成对象，反射调用服务实现者，获取执行结果
  * 将执行结果的对象反序列化，通过Socket发送给客户端
  * 远程调用完成之后，释放Socket等连接资源，防止句柄泄露
  */
-public class RpcExporter {
+public class RpcProducer {
 
     //创建一个可重用固定线程数的线程池
     //Runtime.getRuntime().availableProcessors()返回虚拟机可用的处理器数量
@@ -103,4 +102,16 @@ public class RpcExporter {
         }
 
     }
+
+    public static void main(String[] args) {
+        //创建异步发布服务端的线程并启动，用于接受PRC客户端的请求，根据请求参数调用服务实现类，返回结果给客户端
+        new Thread(() -> {
+            try {
+                RpcProducer.exporter("localhost", 8088);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
 }
