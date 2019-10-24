@@ -14,7 +14,7 @@ maven、spring boot、spring mvc后台流程
               password VARCHAR(255) NOT NULL ,
               phone VARCHAR(255) NOT NULL
             ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT "用户信息表";
-    2.2 myibatis基本CURL,分页查找
+    2.2 myibatis基本CURL,分页查找，myibatis底层映射基础原理研究
     2.3 Druid web ui地址
         http://localhost:8080/druid/login.html
         用户名admin 密码admin    

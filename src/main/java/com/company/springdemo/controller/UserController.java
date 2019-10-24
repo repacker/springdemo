@@ -86,6 +86,9 @@ public class UserController {
         pageSize = number;
         log.info("用户查询：");
         Random rand = new Random();
+
+
+
         try {
             int time = rand.nextInt(5000);
             log.info("查询休息" + time + "毫秒！");
@@ -94,6 +97,7 @@ public class UserController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 //      这里也可以照着PageInfo实现一个MyPageInfo
 //        PageInfo<UserDomain>  list = userService.findAllUser(pageNum,pageSize);
         PageSerializable<UserDomain> list = userService.findAllUser(pageNum, pageSize);

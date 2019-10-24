@@ -46,5 +46,12 @@
         <include refid="BASE_TABLE"/>
     </select>
 
+    <select id="selectUserByUserId" resultType="com.company.springdemo.model.UserDomain">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+        where userId=#{userId}
+    </select>
 
 </mapper>

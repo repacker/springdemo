@@ -16,4 +16,6 @@ public interface UserDao {
 
     boolean deleteById(int userId);
 
+    UserDomain selectUserByUserId(int userId);
+
 }

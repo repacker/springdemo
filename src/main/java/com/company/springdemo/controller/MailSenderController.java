@@ -15,7 +15,7 @@ import javax.mail.internet.MimeMessage;
 /**
  * @Auther: whs
  * @Date: 2019/2/11 16:07
- * @Description:
+ * @Description: Spring mail请求接收发送邮件工具类
  */
 @RestController
 public class MailSenderController {

@@ -1,35 +1,32 @@
 package com.company.springdemo.common.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import okhttp3.FormBody.Builder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.util.Map;
+
 /**
  * @Auther: whs
  * @Date: 2018/6/20 14:19
  * @Description: okhttp3请求访问接口工具类
  */
+@Slf4j
 public class HttpUtil {
 
-    private final static Logger logger = LoggerFactory.getLogger(HttpUtil.class);
-
     /**
-     * @Description: 该方法get获取数据
+     * @Description: 该方法get获取数据，默认即get方法
      * @Param:
      * @return:
      */
-    public static String httpGet(String url) {
-        Request request = new Request.Builder().get().url(url).build();
+    public static String httpGet(String url) throws IOException {
+//        Request request = new Request.Builder().get().url(url).build();
+        Request request = new Request.Builder().url(url).build();
+//        log.info("httpGet header:" + request.headers().toString());
         Call call = new OkHttpClient().newCall(request);
-        try {
-            Response response = call.execute();
-            return response.body().string();
-        } catch (IOException e) {
-            logger.error("通知postToUrlByJsonDaiHou异常反馈：", e);
-        }
-        return null;
+        Response response = call.execute();
+        return response.body().string();
     }
 
     /**
@@ -37,7 +34,7 @@ public class HttpUtil {
      * @Param:
      * @return:
      */
-    public static String postToUrl(String url, Map<String, String> params) throws IOException {
+    public static String postToUrlByMapParams(String url, Map<String, String> params) throws IOException {
         Builder builder = new Builder();
         for (Map.Entry<String, String> entry : params.entrySet()) {
             builder.add(entry.getKey(), entry.getValue());
@@ -50,12 +47,12 @@ public class HttpUtil {
         return response.body().string();
     }
 
-    /** 
+    /**
      * @Description: 该方法post传递json字符串
-     * @Param: 
+     * @Param:
      * @return:
-     */ 
-    public static String postToUrl(String url, String paramsJson) throws IOException {
+     */
+    public static String postToUrlByJsonParams(String url, String paramsJson) throws IOException {
         //MediaType  设置Content-Type 标头中包含的媒体类型值
         RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8")
                 , paramsJson);

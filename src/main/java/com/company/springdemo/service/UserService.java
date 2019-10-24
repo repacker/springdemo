@@ -11,5 +11,7 @@ public interface UserService {
     boolean deleteById(int userId);
 
     PageInfo<UserDomain> findAllUser(int pageNum, int pageSize);
+
+    UserDomain selectUserByUserId(int userId);
 }
 

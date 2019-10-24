@@ -17,9 +17,10 @@ import java.util.Properties;
 /**
  * @Auther: whs
  * @Date: 2018/5/29 15:17
- * @Description: 接收邮箱并统计分析
+ * @Description: 接收邮箱并统计分析,这里注意需要邮箱开通smpt、pop服务
  */
 public class ImapFetchMail {
+
     public static void main(String[] args) throws MessagingException {
         String host = "newmail.xxx.com";
         String port = "993";

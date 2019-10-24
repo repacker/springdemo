@@ -52,4 +52,9 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public UserDomain selectUserByUserId(int userId) {
+        return userDao.selectUserByUserId(userId);
+    }
+
 }
