@@ -26,7 +26,7 @@ public class Merge2 {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         // 正式开始
         long beginTime = System.currentTimeMillis();
         ForkJoinPool pool = new ForkJoinPool();
@@ -91,7 +91,7 @@ public class Merge2 {
         }
 
         private int[] joinInts(int array1[], int array2[]) {
-            return Merge1.joinInts(array1,array2);
+            return Merge1.joinInts(array1, array2);
         }
     }
 

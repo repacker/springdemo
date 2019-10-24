@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * @description: 该类 5.0 JDK8 双冒号及借口实现方法用法
+ * @description: 该类 5.0 JDK8 双冒号及在接口中实现方法的使用
  * @author: whs
  * @date: 2019/07/14 15:59
  */

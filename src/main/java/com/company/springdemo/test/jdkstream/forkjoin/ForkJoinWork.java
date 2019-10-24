@@ -11,7 +11,7 @@ public class ForkJoinWork extends RecursiveTask<Long> {
 
     private Long start;//起始值
     private Long end;//结束值
-    public static final Long critical = 100000L;//临界值
+    public static final Long critical = 100000L;//临界值，十万级别
 
     public ForkJoinWork(Long start, Long end) {
         this.start = start;

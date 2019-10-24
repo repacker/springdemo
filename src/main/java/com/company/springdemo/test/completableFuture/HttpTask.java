@@ -1,29 +1,22 @@
 package com.company.springdemo.test.completableFuture;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import com.company.springdemo.common.utils.HttpUtil;
 
 import java.io.IOException;
 
 /**
  * @Auther: whs
  * @Date: 2019/2/13 16:03
- * @Description:
+ * @Description: http rest请求外部接口
  */
 public class HttpTask {
 
     public String doHttp(String url) throws IOException, InterruptedException {
         long threadId = Thread.currentThread().getId();
-        OkHttpClient client = new OkHttpClient();
-        System.out.println("http io starts in thread id: " + threadId);
+//        OkHttpClient client = new OkHttpClient();
+        System.out.println("HttpTask http io starts in thread id: " + threadId);
 
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-
-        Response response = client.newCall(request).execute();
-        String result = response.headers().toString();
+        String result  = HttpUtil.httpGet(url);
 
         // mock delay
         for (int i = 1; i <= 3; ++i) {
@@ -32,6 +25,6 @@ public class HttpTask {
             System.out.println("delayed " + i + " seconds in thread id: " + threadId);
         }
 
-        return "******** headers in thread id " + threadId + " ***********\n" + result + "***************** headers ******************";
+        return "******** thread id " + threadId + " return ***********";
     }
 }
