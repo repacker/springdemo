@@ -2,6 +2,7 @@ package com.company.springdemo.test.thread;
 
 /**
  * @description: 该类 经典测试线程安全的例子，隐藏static、synchronized的使用案例
+ * 1、该类线程不安全，如果static换成字符串类型，则可以保证线程安全。具体见笔记why？
  * @author: whs
  * @date: 2019/09/10 16:45
  */
