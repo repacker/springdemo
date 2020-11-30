@@ -2,7 +2,14 @@ package com.company.springdemo.test.jdkstream;
 
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.DoubleSummaryStatistics;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -225,8 +232,8 @@ public class CollectionsStreamTest {
     public void test18() {
         //max与min都必须有比较条件才可以
         Optional<Employee> max = employees.stream().max((e1, e2) -> Integer.compare(e1.getSalary(), e2.getSalary()));
-        System.out.println(max.get());//LambdaP.Employee{name='张七', age=42, salary=5500}
-
+        System.out.println(max.get());
+        //LambdaP.Employee{name='张七', age=42, salary=5500}
     }
 
     //min测试
@@ -236,7 +243,7 @@ public class CollectionsStreamTest {
         System.out.println(min.get());//LambdaP.Employee{name='张三', age=19, salary=2000}
     }
 
-    // 求约
+    // 求和
     @Test
     public void test20() {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
@@ -261,7 +268,8 @@ public class CollectionsStreamTest {
         //                      return a + b;
         //                 }
         Optional<Integer> reduce1 = employees.stream().map(Employee::getSalary).reduce(Integer::sum);
-        System.out.println(reduce1.get());//18500这里为啥是返回Optional？因为上一个重载的reduce有起始值，再怎么滴都是有值的，那么这个是没有起始值保证的
+        System.out.println(reduce1.get());
+        //18500这里为啥是返回Optional？因为上一个重载的reduce有起始值，再怎么滴都是有值的，那么这个是没有起始值保证的
     }
 
     // 收集到指定集合中！
@@ -284,7 +292,7 @@ public class CollectionsStreamTest {
         //求总数
         Long collect = employees.stream().collect(Collectors.counting());
         System.out.println(collect);//6
-        //求最小
+        //求最小薪资
         Optional<Employee> collect1 = employees.stream().collect(Collectors.minBy((x, y) -> Integer.compare(x.getSalary(), y.getSalary())));
         System.out.println(collect1.get());//LambdaP.Employee{name='张六', age=41, salary=1500}
 
@@ -292,10 +300,10 @@ public class CollectionsStreamTest {
         //取出工资求工资最小
         Optional<Integer> collect2 = employees.stream().map(Employee::getSalary).collect(Collectors.minBy(Integer::compare));
         System.out.println(collect2.get());//1500
-        //求最大
+        //求最大薪资
         Optional<Employee> collect3 = employees.stream().collect(Collectors.maxBy((x, y) -> x.getAge() - y.getAge()));
         System.out.println(collect3);//Optional[LambdaP.Employee{name='张七', age=42, salary=5500}]以为没有get，所以外层抱着一个Optional对象
-        //求平均
+        //求平均薪资
         Double collect4 = employees.stream().collect(Collectors.averagingInt(Employee::getSalary));
         System.out.println(collect4);//3083.3333333333335  这里平均数有三个不同的方法分别是转int，转double，转long，并且后面时自己循环，不需要自己map了
         //求和  同样是三个不同方法 转int，转double，转long
@@ -355,7 +363,7 @@ public class CollectionsStreamTest {
 
     //分区 分为true与false
     @Test
-    public void test26(){
+    public void test26() {
         Map<Boolean, List<Employee>> collect = employees.stream().collect(Collectors.partitioningBy((e) -> e.getAge() > 35));
         System.out.println(collect);
         //{
@@ -367,7 +375,7 @@ public class CollectionsStreamTest {
 
     //连接！
     @Test
-    public void test27(){
+    public void test27() {
         //参数：第一个是用什么隔开这些需要连接的字符串，第二个是字符串开头，第三个是字符串结尾
         String collect = employees.stream().map(Employee::getName).collect(Collectors.joining(",", "--", "--"));
         System.out.println("collect = " + collect);//collect = --张四,张五,张六,张三,张7,张七--
