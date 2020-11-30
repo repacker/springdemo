@@ -1,4 +1,4 @@
-package com.company.springdemo.test.listandjson;
+package com.company.springdemo.test.jsonjartest;
 
 import com.company.springdemo.SpringDemoApplication;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.company.springdemo.test.listandjson;
+package com.company.springdemo.test.jsonjartest;
 
 import com.alibaba.fastjson.JSON;
 import com.company.springdemo.model.DemoProperties;
@@ -16,12 +16,12 @@ import java.util.List;
 @Component
 public class ListAndJson {
 
-    /** 
-     * @Description: 该方法Json与List的相互转换使用
-     * @Param: 
+    /**
+     * @Description: 该方法fastjson与List的相互转换使用
+     * @Param:
      * @return:
-     */ 
-    public void getListAndJson(){
+     */
+    public void getListAndJson() {
         DemoProperties demoProperties1 = new DemoProperties();
         demoProperties1.setAge("12");
         DemoProperties demoProperties2 = new DemoProperties();
@@ -43,8 +43,11 @@ public class ListAndJson {
         list1.add(userModel3);
         System.out.println(JSON.toJSONString(list1));
 
-        List<DemoProperties> list3= JSON.parseArray(JSON.toJSONString(list),DemoProperties.class);
+        List<DemoProperties> list3 = JSON.parseArray(JSON.toJSONString(list), DemoProperties.class);
         System.out.println(list3.get(0).getAge());
-
     }
+
+
+
+
 }

@@ -28,8 +28,10 @@ public class AcceptMethod {
         System.out.println("===现在JDK双冒号是:===");
         al.forEach(AcceptMethod::printValue);
         //下面的方法和上面等价的
-        Consumer<String> methodParam = AcceptMethod::printValue; //方法参数
-        al.forEach(x -> methodParam.accept(x));//方法执行accept
+        //方法参数
+        Consumer<String> methodParam = AcceptMethod::printValue;
+        //方法执行accept
+        al.forEach(x -> methodParam.accept(x));
 
     }
 }
