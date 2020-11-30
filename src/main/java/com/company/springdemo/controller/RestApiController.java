@@ -7,8 +7,6 @@ import com.company.springdemo.common.base.RespEntity;
 import com.company.springdemo.model.UserDomain;
 import com.company.springdemo.service.UserService;
 import com.github.pagehelper.PageSerializable;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,14 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/swagger")
-@Api(value = "RestApiController|一个用来测试swagger注解的控制器")
+//@Api(value = "RestApiController|一个用来测试swagger注解的控制器")
 @Slf4j
 public class RestApiController {
 
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value = "用户信息查询API", notes = "Swagger的使用")
+//    @ApiOperation(value = "用户信息查询API", notes = "Swagger的使用")
     @ResponseBody
     @RequestMapping("/all")
     public Object findAllUser(
