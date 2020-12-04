@@ -4,12 +4,14 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -231,7 +233,7 @@ public class CollectionsStreamTest {
     @Test
     public void test18() {
         //max与min都必须有比较条件才可以
-        Optional<Employee> max = employees.stream().max((e1, e2) -> Integer.compare(e1.getSalary(), e2.getSalary()));
+        Optional<Employee> max = employees.stream().max(Comparator.comparingInt(Employee::getSalary));
         System.out.println(max.get());
         //LambdaP.Employee{name='张七', age=42, salary=5500}
     }
@@ -239,11 +241,17 @@ public class CollectionsStreamTest {
     //min测试
     @Test
     public void test19() {
-        Optional<Employee> min = employees.stream().min((e1, e2) -> Integer.compare(e1.getAge(), e2.getAge()));
+        Optional<Employee> min = employees.stream().min(Comparator.comparingInt(Employee::getAge));
         System.out.println(min.get());//LambdaP.Employee{name='张三', age=19, salary=2000}
     }
 
     // 求和
+
+    /**
+     * @description: 归约，也称缩减，顾名思义，是把一个流缩减成一个值，能实现对集合求和、求乘积和求最值操作。
+     * @param:
+     * @return:
+     */
     @Test
     public void test20() {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
@@ -273,10 +281,17 @@ public class CollectionsStreamTest {
     }
 
     // 收集到指定集合中！
+
+    /**
+     * @description: collect，收集，可以说是内容最繁多、功能最丰富的部分了。从字面上去理解，就是把一个流收集起来，最终可以是收集成一个值也可以收集成一个新的集合。
+     * collect主要依赖java.util.stream.Collectors类内置的静态方法。
+     * @param:
+     * @return:
+     */
     @Test
     public void test22() {
-        //需求 ，将名字提取出来，放到List中咋办呢
-        List<Employee> collect = employees.stream().collect(Collectors.toList());
+        //需求 ，将名字提取出来，放到新的List中咋办呢
+        List<String> collect = employees.stream().map(Employee::getName).collect(Collectors.toList());
         collect.stream().forEach(System.out::println);//即可输出
         System.out.println("***************");
         //如果平时我们需要的收集到的集合没有提供相应的办法咋办
@@ -284,6 +299,9 @@ public class CollectionsStreamTest {
         for (Employee employee : collect1) {
             System.out.println(employee);
         }
+        System.out.println("***************");
+        Set<String> set = employees.stream().map(Employee::getName).collect(Collectors.toSet());
+        System.out.println(set);
     }
 
     //可以计算各项数据
@@ -291,29 +309,29 @@ public class CollectionsStreamTest {
     public void test23() {
         //求总数
         Long collect = employees.stream().collect(Collectors.counting());
-        System.out.println(collect);//6
+        System.out.println(collect);//7
         //求最小薪资
-        Optional<Employee> collect1 = employees.stream().collect(Collectors.minBy((x, y) -> Integer.compare(x.getSalary(), y.getSalary())));
-        System.out.println(collect1.get());//LambdaP.Employee{name='张六', age=41, salary=1500}
+        Optional<Employee> collect1 = employees.stream().min(Comparator.comparingInt(Employee::getSalary));
+        System.out.println(collect1.get());//Employee(name=张三, age=19, salary=2000)
 
         System.out.println("*************************");
         //取出工资求工资最小
         Optional<Integer> collect2 = employees.stream().map(Employee::getSalary).collect(Collectors.minBy(Integer::compare));
-        System.out.println(collect2.get());//1500
-        //求最大薪资
-        Optional<Employee> collect3 = employees.stream().collect(Collectors.maxBy((x, y) -> x.getAge() - y.getAge()));
-        System.out.println(collect3);//Optional[LambdaP.Employee{name='张七', age=42, salary=5500}]以为没有get，所以外层抱着一个Optional对象
+        System.out.println(collect2.get());//2000
+        //求最大年龄
+        Optional<Employee> collect3 = employees.stream().max(Comparator.comparingInt(Employee::getAge));
+        System.out.println(collect3);//Optional[Employee(name=张七, age=43, salary=5500)]以为没有get，所以外层抱着一个Optional对象
         //求平均薪资
         Double collect4 = employees.stream().collect(Collectors.averagingInt(Employee::getSalary));
-        System.out.println(collect4);//3083.3333333333335  这里平均数有三个不同的方法分别是转int，转double，转long，并且后面时自己循环，不需要自己map了
+        System.out.println(collect4);//4000.0  这里平均数有三个不同的方法分别是转int，转double，转long，并且后面时自己循环，不需要自己map了
         //求和  同样是三个不同方法 转int，转double，转long
         Double collect6 = employees.stream().collect(Collectors.summingDouble(Employee::getAge));
-        System.out.println(collect6);//214.0
+        System.out.println(collect6);//258.0
         // 同样是三个不同方法 转int，转double，转long，但是这里是按照 指定列 把上面的所有参数都求出来的
         DoubleSummaryStatistics collect5 = employees.stream().collect(Collectors.summarizingDouble(Employee::getAge));
-        System.out.println(collect5);//DoubleSummaryStatistics{count=6, sum=214.000000, min=19.000000, average=35.666667, max=42.000000}
-        System.out.println(collect5.getCount());//6
-        System.out.println(collect5.getMax());//42。0
+        System.out.println(collect5);//DoubleSummaryStatistics{count=7, sum=258.000000, min=19.000000, average=36.857143, max=43.000000}
+        System.out.println(collect5.getCount());//7
+        System.out.println(collect5.getMax());//43.0
     }
 
     //分组！！
@@ -380,4 +398,33 @@ public class CollectionsStreamTest {
         String collect = employees.stream().map(Employee::getName).collect(Collectors.joining(",", "--", "--"));
         System.out.println("collect = " + collect);//collect = --张四,张五,张六,张三,张7,张七--
     }
+
+    /**
+     * @description: 映射，可以将一个流的元素按照一定的映射规则映射到另一个流中。分为map和flatMap：
+     * map：接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素。
+     * flatMap：接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流。
+     * @param:
+     * @return:
+     */
+    @Test
+    public void testFlatMap() {
+
+        List<String> splitItemsList = Arrays.asList("m,k,l,a", "1,3,5,7", "12");
+        Optional.ofNullable(splitItemsList).flatMap(planSplitItemsList -> Optional.ofNullable(planSplitItemsList.get(1)))
+                .ifPresent(splitItemDetails -> {
+                    System.out.println(splitItemDetails);
+                });
+
+        List<String> listNew = splitItemsList.stream().flatMap(s -> {
+            // 将每个元素转换成一个stream
+            String[] split = s.split(",");
+            Stream<String> s2 = Arrays.stream(split);
+            return s2;
+        }).collect(Collectors.toList());
+
+        System.out.println("处理前的集合：" + splitItemsList);
+        System.out.println("处理后的集合：" + listNew);
+
+    }
+
 }
