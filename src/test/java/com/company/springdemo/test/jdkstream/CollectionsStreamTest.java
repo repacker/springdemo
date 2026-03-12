@@ -36,8 +36,8 @@ public class CollectionsStreamTest {
             new Employee("张五", 38, 4000),
             new Employee("张六", 41, 2500),
             new Employee("张七", 42, 5500),
-            new Employee("张七", 43, 5500),
-            new Employee("张七", 42, 5500)
+            new Employee("张七", 43, 3500),
+            new Employee("张七", 42, 4500)
     );
 
     @Test

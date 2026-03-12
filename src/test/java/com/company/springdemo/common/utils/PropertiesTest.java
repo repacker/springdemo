@@ -1,6 +1,5 @@
 package com.company.springdemo.common.utils;
 
-import com.sun.deploy.util.SessionState;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +22,7 @@ public class PropertiesTest {
     @Test
     public void testProperties() throws IOException {
         Properties prop = new Properties();
-        prop.load(new InputStreamReader(SessionState.Client.class.getClassLoader().getResourceAsStream("demo.properties"), "UTF-8"));
+        prop.load(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("demo.properties"), "UTF-8"));
         System.out.println(prop.getProperty("age"));
     }
 
